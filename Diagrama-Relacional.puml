@@ -1,0 +1,65 @@
+@startuml
+skinparam class {
+  BackgroundColor #F9F9F9
+  BorderColor Black
+  ArrowColor Black
+}
+
+' ======================
+' Entidades
+' ======================
+
+class Produto {
+    - Long produtoID
+    - String nome
+    - String descricao
+    - String sku
+    - String categoria
+    - BigDecimal preco
+    - Integer estoqueAtual
+}
+
+class Loja {
+    - Long lojaID
+    - String nome
+    - String endereco
+}
+
+class Usuario {
+    - Long usuarioID
+    - String nome
+    - String email
+    - String senhaHash
+    - PerfilUsuario perfil
+}
+
+class EstoqueMovimento {
+    - Long movimentoID
+    - TipoMovimento tipoMovimento
+    - Integer quantidade
+    - LocalDateTime dataHora
+}
+
+enum TipoMovimento {
+    ENTRADA
+    SAIDA
+}
+
+enum PerfilUsuario {
+    ADMIN
+    FUNCIONARIO
+    CLIENTE
+}
+
+' ======================
+' Relacionamentos
+' ======================
+
+Produto "1" --> "0..*" EstoqueMovimento : movimentos
+Loja "1" --> "0..*" EstoqueMovimento : movimentos
+Usuario "1" --> "0..*" EstoqueMovimento : movimentos
+
+EstoqueMovimento --> TipoMovimento
+Usuario --> PerfilUsuario
+
+@enduml
