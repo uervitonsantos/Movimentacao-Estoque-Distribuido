@@ -110,10 +110,11 @@ public class EstoqueInitial implements CommandLineRunner {
                 movimento.setDataHora(LocalDateTime.now());
                 estoqueMovimentoRepository.salvaEstoqueMovimento(movimento);
 
-                System.out.println("Movimento de estoque criado com sucesso!");
             } else {
                 System.out.println("Não foi possível criar o movimento de estoque. Verifique Produto, Loja e Usuário.");
             }
         }
+
+        System.out.println("Movimento de estoque criado com sucesso!");
     }
 }

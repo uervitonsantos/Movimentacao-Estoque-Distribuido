@@ -12,7 +12,6 @@ public class PerfilUsuarioConverter implements AttributeConverter<PerfilUsuario,
 
     @Override
     public String convertToDatabaseColumn(PerfilUsuario perfilUsuario) {
-        System.out.println("Convertendo para DB: " + perfilUsuario);
         return Optional.ofNullable(perfilUsuario).map(a -> perfilUsuario.getValor()).orElse(null);
     }
 

@@ -9,12 +9,14 @@ import com.ml.gestao.estoque.distribuido.filtro.FiltroWrapper;
 import com.ml.gestao.estoque.distribuido.recurso.LojaSwagger;
 import com.ml.gestao.estoque.distribuido.util.constates.Resource;
 import jakarta.ws.rs.BeanParam;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "/loja")
 public class LojaController implements LojaSwagger {
@@ -30,32 +32,40 @@ public class LojaController implements LojaSwagger {
     @Override
     @GetMapping(PATH_ID)
     public ResponseEntity<LojaDTO> getLoja(@PathVariable(Resource.P_LOJA_ID) Long lojaID) {
+        log.info("[LISTAGEM DA LOJA] | INICIO");
         LojaDTO dto = lojaDTOFactory.builderLojaDto(lojaBean.buscaLoja(lojaID));
+        log.info("[LISTAGEM DA LOJA] | FINALIZADO");
         return ResponseEntity.ok().body(dto);
     }
 
     @Override
     @GetMapping
     public ResponseEntity<List<LojaDTO>> getLojas(@BeanParam LojaFiltroDTO filtro) {
+        log.info("[LISTAGEM DA LOJA] | INICIO");
         FiltroWrapper wrapper = filtro.filtroWrapper();
         List<LojaCanonico> lojas = lojaBean.buscaLojas(wrapper);
+        log.info("[LISTAGEM DA LOJA] | FINALIZADO");
         return ResponseEntity.ok(lojaDTOFactory.lojasDto(lojas));
     }
 
     @Override
     @PostMapping
     public ResponseEntity<LojaDTO> criaLoja(@RequestBody LojaDTO dto) {
-       LojaCanonico canonico = lojaDTOFactory.builderLojaCanonico(dto);
-       LojaCanonico lojaSalva = lojaBean.criaLoja(canonico);
-       return criaLojaResponse(lojaSalva);
+        log.info("[CRIACAO DA LOJA] | INICIO");
+        LojaCanonico canonico = lojaDTOFactory.builderLojaCanonico(dto);
+        LojaCanonico lojaSalva = lojaBean.criaLoja(canonico);
+        log.info("[CRIACAO DA LOJA] | FINALIZADO");
+        return criaLojaResponse(lojaSalva);
     }
 
     @Override
     @PutMapping(PATH_ID)
     public ResponseEntity atualizaLoja(@PathVariable(Resource.P_LOJA_ID) Long lojaID, @RequestBody LojaDTO dto) {
+        log.info("[ATUALIZACAO DA LOJA] | INICIO");
         dto.setLojaID(lojaID);
         LojaCanonico canonico = lojaDTOFactory.builderLojaCanonico(dto);
         LojaCanonico lojaAtualizada = lojaBean.editaLoja(canonico);
+        log.info("[ATUALIZACAO DA LOJA] | FINALIZADO");
         return criaLojaResponse(lojaAtualizada);
     }
 
@@ -67,7 +77,9 @@ public class LojaController implements LojaSwagger {
     @Override
     @DeleteMapping(PATH_ID)
     public ResponseEntity removeLoja(@PathVariable(Resource.P_LOJA_ID) Long lojaID) {
+        log.info("[REMOCAO DA LOJA] | INICIO");
         lojaBean.removeLoja(lojaID);
+        log.info("[REMOCAO DA LOJA] | FINALIZADO");
         return ResponseEntity.noContent().build();
     }
 }
