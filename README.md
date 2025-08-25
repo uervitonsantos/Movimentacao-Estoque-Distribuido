@@ -1,9 +1,64 @@
 # Gestão de Estoque Distribuído
 
-Este projeto tem como objetivo desenvolver uma aplicação para **gestão de estoque**, permitindo o cadastro, consulta e gerenciamento de produtos, pedidos e clientes de forma modularizada e escalável.  
-A aplicação foi estruturada em **múltiplos módulos** (util, controller, etc.), promovendo separação de responsabilidades e facilitando manutenção e evolução.
+Este projeto tem como objetivo desenvolver uma aplicação simples de **gestão de estoque**, permitindo:
+
+- Cadastro, consulta, atualização e remoção de **lojas**
+- Cadastro, consulta, atualização e remoção de **usuários**
+- Cadastro, consulta, atualização e remoção de **produtos**
+- Registro e gerenciamento de **movimentações no estoque** (entradas e saídas)
 
 ---
+
+## 🎯 Proposta e Abordagem
+
+A arquitetura desenvolvida foi pensada para **resolver problemas críticos de sistemas com baixa resiliência**, como:
+
+- **Banco de dados local único**: risco de indisponibilidade, desatualizado e falta de resiliência.
+- **Indisponibilidade do sistema**: Uma API em containers traz benefícios como escalabilidade independente, implantação e atualização mais rápidas, isolamento de falhas, flexibilidade tecnológica e ciclos de desenvolvimento mais curtos.
+
+### ✅ Benefícios da Arquitetura
+- **Estrutura modular**: separa responsabilidades em módulos independentes (ex.: `etity`, `controller`), trazendo **segurança, manutenibilidade e clareza na evolução do projeto**.
+- **Escalabilidade**: o modelo atual pode ser facilmente adaptado para múltiplos **microsserviços**, com um **orquestrador de containers** (ex.: Kubernetes ou Docker Swarm), garantindo **alta disponibilidade e elasticidade**.
+- **Segurança**: a separação modular reduz o acoplamento e permite controles mais específicos de acesso e responsabilidade por domínio.
+- **Evolução contínua**: cada módulo pode evoluir de forma independente, facilitando futuras integrações com serviços externos ou outros sistemas corporativos.
+
+### ⚡ Argumentos para defesa da proposta
+- **Disponibilidade**: a arquitetura desenvolvida mitiga riscos de indisponibilidade, pois a imagem da aplicação pode ser reestabelecia rapidamente.
+- **Escalabilidade futura**: a transição para microsserviços é facilmente aplicavel, permitindo distribuir cargas de trabalho entre os serviços tornandos especializados.
+- **Flexibilidade**: diferentes bancos de dados podem ser configurados.
+- **Preparação para nuvem**: a aplicação pode ser implantada em em uma cloud, melhorando a disponibilidadee segurança.
+- **Tecnológica**: a escolha de **Spring Boot 3**, **Maven** e **Docker** garante uma base sólida, bem documentada e com ampla comunidade de suporte.
+
+---
+
+## 🏗️ Arquitetura da Aplicação
+
+A arquitetura escolhida promovendo **organização por responsabilidades** e pode ser escalada:
+
+> A modularização permite melhor manutenção e futura escalabilidade do sistema.
+
+<img width="741" height="362" alt="estoque drawio" src="https://github.com/user-attachments/assets/2861d917-0728-4be8-8595-a7615b75aa45" />
+
+---
+
+## Arquitetura da Aplicação Futura
+
+Apesar da arquitetura escolhida seguir um padrão modular, ele pode facilmente ser evoluida para uma arquitetura de multiplos microsserviços (ex abaixo)
+
+
+
+## 🗄️ Banco de Dados
+
+- **Banco atual**: [H2 Database](https://www.h2database.com/)
+    - Facilita testes e desenvolvimento local (console disponível em: `http://localhost:8080/h2-console`).
+- **Futuro**: pode ser configurado facilmente para **PostgreSQL** ou **MySQL** em produção.
+
+📌 **Espaço reservado para o diagrama de relacionamento das entidades:**
+
+<img width="528" height="538" alt="diagram" src="https://github.com/user-attachments/assets/1713bd45-bf4e-4b76-a7ea-1016abb7938f" />
+
+---
+
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -20,36 +75,14 @@ A aplicação foi estruturada em **múltiplos módulos** (util, controller, etc.
 
 A API expõe endpoints para gestão das principais entidades:  
 
-- **Usuário**
-- **Produtos**
-- **Lojas**
-- **Movimentação de Estoque**
+- **Usuário** ``localhost:8080/usuario``
+- **Produtos** ``localhost:8080/produto``
+- **Lojas** ``localhost:8080/loja``
+- **Movimentação de Estoque** ``localhost:8080/estoque``
 
 Todos os endpoints estão documentados via **Swagger**, permitindo navegação interativa e testes:
 
 👉 [Acesse a documentação Swagger](http://localhost:8080/swagger-ui/index.html#/)
-
----
-
-## 🏗️ Arquitetura da Aplicação
-
-A arquitetura escolhida promovendo **organização por responsabilidades** e pode ser escalada:  
-
-> A modularização permite melhor manutenção e futura escalabilidade do sistema.
-
-<img width="741" height="362" alt="estoque drawio" src="https://github.com/user-attachments/assets/2861d917-0728-4be8-8595-a7615b75aa45" />
-
----
-
-## 🗄️ Banco de Dados
-
-- **Banco atual**: [H2 Database](https://www.h2database.com/)  
-  - Facilita testes e desenvolvimento local (console disponível em: `http://localhost:8080/h2-console`).  
-- **Futuro**: pode ser configurado facilmente para **PostgreSQL** ou **MySQL** em produção.  
-
-📌 **Espaço reservado para o diagrama de relacionamento das entidades:**
-
-<img width="528" height="538" alt="diagram" src="https://github.com/user-attachments/assets/1713bd45-bf4e-4b76-a7ea-1016abb7938f" />
 
 ---
 
