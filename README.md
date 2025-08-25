@@ -45,6 +45,7 @@ A arquitetura escolhida promovendo **organização por responsabilidades** e pod
 
 Apesar da arquitetura escolhida seguir um padrão modular, ele pode facilmente ser evoluida para uma arquitetura de multiplos microsserviços (ex abaixo)
 
+<img width="1712" height="951" alt="novo drawio" src="https://github.com/user-attachments/assets/63220411-bfb6-4e67-82a9-9ca5d5399a54" />
 
 
 ## 🗄️ Banco de Dados
@@ -53,9 +54,9 @@ Apesar da arquitetura escolhida seguir um padrão modular, ele pode facilmente s
     - Facilita testes e desenvolvimento local (console disponível em: `http://localhost:8080/h2-console`).
 - **Futuro**: pode ser configurado facilmente para **PostgreSQL** ou **MySQL** em produção.
 
-📌 **Espaço reservado para o diagrama de relacionamento das entidades:**
+📌 **Diagrama de relacionamento das entidades:**
 
-<img width="528" height="538" alt="diagram" src="https://github.com/user-attachments/assets/1713bd45-bf4e-4b76-a7ea-1016abb7938f" />
+<img width="528" height="538" alt="diagram" src="https://github.com/user-attachments/assets/f101808c-fea7-41ff-a62a-41298d6c749a" />
 
 ---
 
