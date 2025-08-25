@@ -106,11 +106,4 @@ http://localhost:8080/swagger-ui/index.html
             "dataCadastroPedido": "2024-08-08T14:38:01.123699",
             "nomeProduto": "Produto 4",
             "clienteID": 1,
-            "valorProduto": 500.0,
-            "valorTotal": 1500.0,
-            "quantidadeProduto": 3
-        }
-    ]
-}
-```
-
+     
